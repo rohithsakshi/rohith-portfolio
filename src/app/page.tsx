@@ -1,27 +1,27 @@
-import Hero from "@/src/components/Hero";
-import About from "@/src/components/About";
-import Skills from "@/src/components/Skills";
-import Projects from "@/src/components/Projects";
-import Experience from "@/src/components/Experience";
-import Certifications from "@/src/components/Certifications";
-import Resume from "@/src/components/Resume";
-import Contact from "@/src/components/Contact";
-import Highlights from "@/src/components/Highlights";
-import Footer from "@/src/components/Footer";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Experience from "@/components/Experience";
+import Certifications from "@/components/Certifications";
+import Resume from "@/components/Resume";
+import Contact from "@/components/Contact";
+import Highlights from "@/components/Highlights";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-black text-white">
       <Hero />
-      <Highlights/>
+      <Highlights />
       <About />
       <Skills />
       <Projects />
-      <Experience/>
-      <Certifications/>
-      <Resume/>
-      <Contact/>
-      <Footer/>
+      <Experience />
+      <Certifications />
+      <Resume />
+      <Contact />
+      <Footer />
     </main>
   );
 }
