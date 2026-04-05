@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ededed;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 🌌 NOISE */
+.noise {
+  background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+  opacity: 0.05;
+}
+
+/* ✨ OPTIONAL STAR TWINKLE */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+
+/* 🔥 Smooth glass effect boost */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ✨ Hover glow (subtle, premium) */
+.glow-hover:hover {
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
+}
+
+/* ⚡ Smooth transitions everywhere */
+.smooth {
+  transition: all 0.3s ease;
+}
+
+/* 🎬 Slight lift effect */
+.lift:hover {
+  transform: translateY(-4px);
+}
+
+/* 💎 Button polish */
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 10px 20px;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
