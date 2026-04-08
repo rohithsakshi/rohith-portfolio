@@ -1,16 +1,37 @@
 @import "tailwindcss";
 
+/* 🌍 BASE */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: #0a0a0a;
-  color: #ededed;
+  background: var(--bg-main);
+  color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 🌌 NOISE */
+/* 🌌 DESIGN SYSTEM VARIABLES */
+:root {
+  /* 🎨 BACKGROUND */
+  --bg-main: #000000;
+  --bg-section: #0a0a0a;
+
+  /* 🧱 CARDS (🔥 FIXED — NO BLUE TINT) */
+  --card-bg: #121212;
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  /* ✨ TEXT */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+
+  /* 🔥 ACCENT */
+  --accent: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.1);
+}
+
+/* 🌌 NOISE TEXTURE */
 .noise {
   background-image: url("https://www.transparenttextures.com/patterns/noise.png");
   opacity: 0.05;
@@ -22,37 +43,105 @@ body {
   50% { opacity: 0.8; }
 }
 
-
-/* 🔥 Smooth glass effect boost */
-.glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* 🌌 SECTION WRAPPER */
+.section {
+  background: var(--bg-section);
 }
 
-/* ✨ Hover glow (subtle, premium) */
-.glow-hover:hover {
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
-}
+/* 🧱 CARD SYSTEM (🔥 PREMIUM FIX) */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
 
-/* ⚡ Smooth transitions everywhere */
-.smooth {
+  /* 🔥 premium glass depth */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* smooth feel */
   transition: all 0.3s ease;
 }
 
-/* 🎬 Slight lift effect */
+/* ✨ TEXT SYSTEM */
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* 🔥 ACCENT SYSTEM */
+.accent {
+  color: var(--accent);
+}
+
+/* ✨ HOVER GLOW (CONTROLLED — NOT OVERPOWERING) */
+.glow-hover:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+/* 🎬 LIFT EFFECT */
 .lift:hover {
   transform: translateY(-4px);
 }
 
-/* 💎 Button polish */
+/* ⚡ GLOBAL SMOOTH */
+.smooth {
+  transition: all 0.3s ease;
+}
+
+/* 💎 BUTTON SYSTEM */
 .btn-outline {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--card-border);
   border-radius: 9999px;
   padding: 10px 20px;
+  background: transparent;
+  color: var(--text-primary);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+}/* 🔥 TECH TAGS */
+.tech-pill {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.tech-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+}/* 🧠 PARALLAX SMOOTH */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ✨ HOVER FEEL */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(255,255,255,0.05);
+}
+
+/* 🔥 TECH PILLS */
+.tech-pill {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.tech-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
 }

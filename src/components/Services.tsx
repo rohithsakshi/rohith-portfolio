@@ -14,9 +14,9 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-20 px-6 bg-black text-white">
+    <section className="section py-20 px-6 text-white">
       <div className="max-w-6xl mx-auto text-center">
-        
+
         <h2 className="text-3xl md:text-5xl font-bold mb-12">
           Services I Offer
         </h2>
@@ -28,13 +28,15 @@ export default function Services() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className="p-6 rounded-2xl border border-gray-800 bg-gray-900"
+                className="card p-6 smooth lift glow-hover"
               >
-                <Icon className="mb-4 text-blue-400" size={32} />
+                <Icon className="mb-4  text-white" size={32} />
+
                 <h3 className="text-xl font-semibold mb-2">
                   {service.title}
                 </h3>
-                <p className="text-gray-400 text-sm">
+
+                <p className="text-secondary text-sm">
                   {service.desc}
                 </p>
               </motion.div>

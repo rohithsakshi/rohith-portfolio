@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -13,27 +17,44 @@ import Impact from "@/components/Impact";
 import Workflow from "@/components/Workflow";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
-
+import Loader from "@/components/Loader";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="bg-black text-white">
-      <Hero />
-      <Highlights />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Services />
-<Projects />
-<Impact />
-<Workflow />
-<FAQ />
-<CTA />
-      <Certifications />
-      <Resume />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      {/* 🔥 LOADER */}
+      {loading && <Loader />}
+
+      {/* 🚀 MAIN CONTENT */}
+      {!loading && (
+        <main className="bg-black text-white">
+          <Hero />
+          <Highlights />
+          <About />
+          <Services />
+          <Skills />
+          <Projects />
+          <Impact />
+          <Workflow />
+          <Experience />
+          <Certifications />
+          <FAQ />
+          <CTA />
+          <Resume />
+          <Contact />
+          <Footer />
+        </main>
+      )}
+    </>
   );
 }
