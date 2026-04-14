@@ -1,60 +1,45 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
+import Loader from "@/components/Loader";
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Highlights from "@/components/Highlights";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Workflow from "@/components/Workflow";
 import Projects from "@/components/Projects";
+import Impact from "@/components/Impact";
 import Experience from "@/components/Experience";
 import Certifications from "@/components/Certifications";
 import Resume from "@/components/Resume";
-import Contact from "@/components/Contact";
-import Highlights from "@/components/Highlights";
-import Footer from "@/components/Footer";
 import Services from "@/components/Services";
-import Impact from "@/components/Impact";
-import Workflow from "@/components/Workflow";
-import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
-import Loader from "@/components/Loader";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import Background from "@/components/Background";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2200);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <>
-      {/* 🔥 LOADER */}
-      {loading && <Loader />}
+    <main className="relative min-h-screen bg-slate-50 selection:bg-cyan-500/30 selection:text-cyan-200">
+      <Loader />
+      <Background />
+      <Navbar />
+      
+      <div className="relative z-10 flex flex-col">
+        <Hero />
+        <Highlights />
+        <About />
+        <Skills />
+        <Workflow />
+        <Projects />
+        <Impact />
+        <Experience />
+        <Certifications />
+        <Resume />
+        <Services />
+        <CTA />
+        <Contact />
+      </div>
 
-      {/* 🚀 MAIN CONTENT */}
-      {!loading && (
-        <main className="bg-black text-white">
-          <Hero />
-          <Highlights />
-          <About />
-          <Services />
-          <Skills />
-          <Projects />
-          <Impact />
-          <Workflow />
-          <Experience />
-          <Certifications />
-          <FAQ />
-          <CTA />
-          <Resume />
-          <Contact />
-          <Footer />
-        </main>
-      )}
-    </>
+      <Footer />
+    </main>
   );
 }

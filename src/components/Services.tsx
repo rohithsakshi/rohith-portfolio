@@ -1,48 +1,71 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { fadeUpVariant, containerVariants, itemVariants } from "@/lib/animations";
 import { Server, Cloud, Shield, Cpu, Wrench, Rocket } from "lucide-react";
 
 const services = [
-  { icon: Server, title: "IT Support", desc: "Troubleshooting systems and resolving technical issues quickly." },
-  { icon: Cloud, title: "Cloud Solutions", desc: "Deploying scalable infrastructure and cloud-based systems." },
-  { icon: Cpu, title: "System Design", desc: "Designing efficient and scalable system architectures." },
-  { icon: Shield, title: "Security Optimization", desc: "Improving system security and preventing vulnerabilities." },
-  { icon: Wrench, title: "Automation", desc: "Automating repetitive tasks using scripts and tools." },
-  { icon: Rocket, title: "Deployment", desc: "CI/CD pipelines and production deployment management." },
+  { icon: Server, title: "Backend Architecture", desc: "Robust APIs and microservices handling large-scale data." },
+  { icon: Cloud, title: "Cloud Integration", desc: "Deploying resilient infrastructure on modern cloud platforms." },
+  { icon: Cpu, title: "Full-Stack Web Apps", desc: "End-to-end SAAS development from database to UI." },
+  { icon: Shield, title: "System Optimization", desc: "Auditing and upgrading legacy systems for peak performance." },
+  { icon: Wrench, title: "Database Design", desc: "Relational modeling and complex query optimization." },
+  { icon: Rocket, title: "CI/CD & DevOps", desc: "Automating builds, testing, and production deployments." },
 ];
 
 export default function Services() {
   return (
-    <section className="section py-20 px-6 text-white">
-      <div className="max-w-6xl mx-auto text-center">
+    <section id="services" className="relative py-24 md:py-32 bg-white border-t border-black/[0.02]">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="mb-16 text-center"
+        >
+          <motion.p variants={fadeUpVariant} className="text-cyan-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+            Services
+          </motion.p>
+          <motion.h2 variants={fadeUpVariant} className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+            Engineering <span className="text-gradient">Capabilities.</span>
+          </motion.h2>
+        </motion.div>
 
-        <h2 className="text-3xl md:text-5xl font-bold mb-12">
-          Services I Offer
-        </h2>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.05 }}
-                className="card p-6 smooth lift glow-hover"
+                variants={itemVariants}
+                className="group relative glass p-8 rounded-[2rem] border border-black/[0.03] hover:border-cyan-500/20 transition-all duration-300"
               >
-                <Icon className="mb-4  text-white" size={32} />
-
-                <h3 className="text-xl font-semibold mb-2">
-                  {service.title}
-                </h3>
-
-                <p className="text-secondary text-sm">
-                  {service.desc}
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-indigo-500/0 group-hover:from-cyan-500/5 group-hover:to-indigo-500/5 transition-colors duration-500 rounded-[2rem]" />
+                
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-xl bg-black/5 border border-black/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 text-slate-900">
+                    <Icon strokeWidth={1.5} size={24} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">
+                    {service.desc}
+                  </p>
+                </div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

@@ -1,17 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
-// ✅ GLOBAL EASING
-const easeOut = [0.22, 1, 0.36, 1] as const;
-
-// 📦 PROJECT DATA
 const projects = [
   {
-    title: "MyGym — Fitness Management App",
+    title: "MyGym — Fitness Management",
     description:
-      "A cross-platform fitness app to manage workouts, track progress, and provide a seamless user experience.",
+      "A cross-platform fitness app to manage workouts, track progress, and provide a seamless unified user experience.",
     highlights: [
       "Built with .NET MAUI and MVVM architecture",
       "Offline support using SQLite",
@@ -24,7 +21,7 @@ const projects = [
   {
     title: "IVA Infra Management System",
     description:
-      "A full-stack construction workflow system managing design, production, and QC pipelines.",
+      "A full-stack construction workflow system managing design, production, and QC pipelines efficiently.",
     highlights: [
       ".NET Web API backend",
       "Next.js frontend",
@@ -37,7 +34,7 @@ const projects = [
   {
     title: "Reddit Sentiment Analysis",
     description:
-      "AI/ML-based sentiment analysis tool extracting and visualizing Reddit data insights.",
+      "AI/ML-based sentiment analysis tool extracting and visualizing contextual Reddit data insights.",
     highlights: [
       "Reddit API integration",
       "NLP sentiment classification",
@@ -49,149 +46,118 @@ const projects = [
   },
 ];
 
-// 🎬 VARIANTS
-const cardVariants: Variants = {
-  initial: { opacity: 0, y: 40, scale: 0.98 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: easeOut, // ✅ FIXED
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -40,
-    scale: 0.98,
-    transition: {
-      duration: 0.4,
-      ease: easeOut,
-    },
-  },
-};
-
 export default function Projects() {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    const speed = isHovered ? 6000 : 3000;
-
+    const speed = isHovered ? 6000 : 4000;
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % projects.length);
     }, speed);
-
     return () => clearInterval(interval);
   }, [isHovered]);
 
   const project = projects[index];
 
   return (
-    <section className="py-24 md:py-32 bg-black text-white relative overflow-hidden">
-      
-      {/* 🌌 BACKGROUND GLOW */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.05),transparent_40%)] blur-3xl pointer-events-none"></div>
+    <section id="projects" className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent_60%)] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-6 md:px-10">
-        
-        {/* HEADER */}
-        <div className="mb-12">
-          <p className="text-xs tracking-[0.2em] uppercase text-white/40 mb-4">
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-12 text-center"
+        >
+          <p className="text-indigo-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
             Projects
           </p>
-
-          <h2 className="text-4xl md:text-5xl font-semibold">
-            Selected Builds
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+            Selected <span className="text-gradient hover:animate-pulse">Builds.</span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* CAROUSEL */}
         <div
-          className="relative"
+          className="relative max-w-4xl mx-auto"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
-              variants={cardVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className={`relative p-8 md:p-10 rounded-2xl border backdrop-blur-md transition-all duration-300 ${
-                isHovered
-                  ? "border-white/30 bg-white/10 shadow-[0_0_60px_rgba(255,255,255,0.06)]"
-                  : "border-white/10 bg-white/5"
-              }`}
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.98 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="relative p-8 md:p-12 rounded-[2.5rem] glass border border-black/[0.05] overflow-hidden group"
             >
-              {/* 🔥 HOVER GLOW */}
-              <div className="absolute inset-0 opacity-0 hover:opacity-100 transition rounded-2xl pointer-events-none bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_70%)]"></div>
+              {/* Premium Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <h3 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">
+                  {project.title}
+                </h3>
+                <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
+                  {project.description}
+                </p>
 
-              <h3 className="text-2xl font-semibold mb-4">
-                {project.title}
-              </h3>
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <h4 className="text-slate-900 text-sm font-semibold uppercase tracking-wider mb-4 border-b border-black/[0.05] pb-2">Key Highlights</h4>
+                    <ul className="space-y-3">
+                      {project.highlights.map((h, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-slate-500">
+                          <span className="text-indigo-400 mt-0.5">✦</span> {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-slate-900 text-sm font-semibold uppercase tracking-wider mb-4 border-b border-black/[0.05] pb-2">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((t, i) => (
+                        <span key={i} className="text-[10px] px-3 py-1.5 uppercase tracking-wider font-bold rounded-full bg-black/5 text-zinc-300 border border-black/10">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
 
-              <p className="text-white/60 mb-6 leading-relaxed">
-                {project.description}
-              </p>
-
-              {/* Highlights */}
-              <ul className="mb-6 space-y-2">
-                {project.highlights.map((h, i) => (
-                  <li key={i} className="text-sm text-white/70">
-                    • {h}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Tech */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tech.map((t, i) => (
-                  <span
-                    key={i}
-                    className="text-xs px-3 py-1 rounded-full bg-white/10 text-white/70 border border-white/10 hover:bg-white/20 transition"
-                  >
-                    {t}
-                  </span>
-                ))}
+                {project.link !== "#" && (
+                  <div className="pt-6 border-t border-black/[0.05]">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 group/link"
+                    >
+                      View Live Project 
+                      <span className="group-hover/link:translate-x-1 transition-transform">→</span>
+                    </a>
+                  </div>
+                )}
               </div>
-
-              {/* CTA */}
-              {project.link !== "#" && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-white hover:gap-2 transition"
-                >
-                  View Project →
-                </a>
-              )}
             </motion.div>
           </AnimatePresence>
 
-          {/* DOTS */}
-          <div className="flex justify-center mt-6 gap-2">
+          {/* Indicators */}
+          <div className="flex justify-center mt-8 gap-3">
             {projects.map((_, i) => (
-              <div
+              <button
                 key={i}
-                className={`h-2 w-2 rounded-full transition ${
-                  i === index
-                    ? "bg-white scale-125"
-                    : "bg-white/30"
+                onClick={() => setIndex(i)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === index ? "w-8 bg-cyan-400" : "w-1.5 bg-black/20 hover:bg-black/40"
                 }`}
+                aria-label={`Go to project ${i + 1}`}
               />
             ))}
           </div>
-
-          {/* HOVER LABEL */}
-          {isHovered && (
-            <p className="text-center text-xs text-white/40 mt-4">
-              Paused — explore the project
-            </p>
-          )}
         </div>
       </div>
     </section>

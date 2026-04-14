@@ -1,165 +1,98 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-
-const name = "Rohith Ganesan";
-
-// ✅ REUSABLE EASING (premium smooth)
-const easeOut = [0.22, 1, 0.36, 1] as const;
-
-// 🎬 ANIMATION VARIANTS
-const container: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: easeOut, // ✅ FIXED
-    },
-  },
-};
-
-const imageReveal: Variants = {
-  hidden: { opacity: 0, scale: 1.06 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      ease: easeOut, // ✅ FIXED
-    },
-  },
-};
+import { motion } from "framer-motion";
+import { containerVariants, fadeUpVariant } from "@/lib/animations";
 
 export default function Hero() {
   return (
-    <section className="h-screen w-full flex bg-black text-white relative overflow-hidden">
-      
-      {/* 🌌 NOISE */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] pointer-events-none"></div>
-
+    <section className="relative min-h-[90vh] w-full flex items-center bg-slate-50 overflow-hidden pt-20 pb-10">
       {/* 🌌 BACKGROUND GLOW */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_35%,rgba(255,255,255,0.06),transparent_30%)] blur-3xl"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(6,182,212,0.06),transparent_40%)] blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-3/4 h-3/4 bg-[radial-gradient(circle_at_70%_20%,rgba(99,102,241,0.04),transparent_50%)] blur-[100px] pointer-events-none" />
 
-      {/* LEFT */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="w-[65%] flex flex-col justify-center px-20 z-10"
-      >
+      <div className="max-w-7xl mx-auto px-6 w-full flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-6 relative z-10">
         
-        {/* PORTFOLIO */}
-        <motion.p
-          variants={fadeUp}
-          className="text-sm tracking-[0.2em] uppercase text-white/40 mb-4"
-        >
-          Portfolio
-        </motion.p>
-
-        {/* NAME */}
-        <motion.h1
-          variants={fadeUp}
-          className="text-6xl font-semibold leading-tight"
-        >
-          {name}
-        </motion.h1>
-
-        {/* DESCRIPTION */}
-        <motion.p
-          variants={fadeUp}
-          className="mt-6 text-lg text-white/60 max-w-md leading-relaxed"
-        >
-          Full Stack Developer building scalable web applications with .NET,
-          React, and modern backend systems.
-        </motion.p>
-
-        {/* TECH STACK */}
+        {/* 🔥 LEFT TEXT */}
         <motion.div
-          variants={fadeUp}
-          className="mt-6 flex flex-wrap gap-3 text-sm text-white/40"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="w-full lg:w-[60%] flex flex-col justify-center"
         >
-          {[".NET", "React", "Next.js", "SQL", "REST APIs"].map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur"
-            >
-              {tech}
-            </span>
-          ))}
+          {/* LABEL */}
+          <motion.p
+            variants={fadeUpVariant}
+            className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-6"
+          >
+            Digital Portfolio
+          </motion.p>
+
+          {/* HEADLINE */}
+          <motion.h1
+            variants={fadeUpVariant}
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 mb-6"
+          >
+            Rohith Ganesan. <br/>
+            <span className="text-slate-500">Full-Stack Developer.</span>
+          </motion.h1>
+
+          {/* VALUE PROPOSITION */}
+          <motion.p
+            variants={fadeUpVariant}
+            className="text-lg text-slate-600 max-w-xl leading-relaxed mb-8"
+          >
+            I architect and engineer scalable web platforms and robust backend systems — focusing on <span className="text-zinc-200">performance</span>, <span className="text-zinc-200">clean code</span>, and real-world impact.
+          </motion.p>
+
+          {/* CTA & STATUS */}
+          <motion.div variants={fadeUpVariant} className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12">
+            <a href="#projects" className="group relative inline-flex items-center justify-center px-8 py-3.5 font-semibold text-black bg-white rounded-full overflow-hidden hover:scale-105 transition-transform duration-300">
+              <span className="relative z-10 flex items-center gap-2">
+                Explore Work <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </span>
+            </a>
+            
+            <div className="flex items-center gap-3 glass px-5 py-3 rounded-full border border-black/[0.05]">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500" />
+              </span>
+              <span className="text-sm text-zinc-300 font-medium">Available for new roles</span>
+            </div>
+          </motion.div>
+
+          {/* 💼 CREDIBILITY STRIP */}
+          <motion.div
+            variants={fadeUpVariant}
+            className="flex flex-wrap items-center gap-4 text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-widest"
+          >
+            <span className="hover:text-cyan-400 transition-colors cursor-pointer">1.5+ Yrs Exp</span>
+            <span className="w-1 h-1 rounded-full bg-black/20" />
+            <span className="hover:text-indigo-400 transition-colors cursor-pointer">Full Stack</span>
+            <span className="w-1 h-1 rounded-full bg-black/20" />
+            <span className="hover:text-slate-900 transition-colors cursor-pointer">Global</span>
+          </motion.div>
         </motion.div>
 
-        {/* BUTTONS */}
+        {/* 🧠 RIGHT IMAGE GLOW */}
         <motion.div
-          variants={fadeUp}
-          className="mt-10 flex gap-4"
+          initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full lg:w-[40%] relative flex items-center justify-center"
         >
-          <button className="px-6 py-3 rounded-xl bg-white text-black font-medium hover:scale-[1.03] transition">
-            View Projects
-          </button>
-
-          <button className="px-6 py-3 rounded-xl border border-white/20 bg-white/5 backdrop-blur hover:bg-white/10 hover:scale-[1.02] transition">
-            Contact Me
-          </button>
+          <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 rounded-full blur-[80px] opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-bl from-indigo-500 rounded-full blur-[60px] opacity-20" />
+            <img
+              src="/rohith.png"
+              alt="Rohith"
+              className="relative z-10 w-full h-full object-cover rounded-[3rem] p-2 glass border-black/[0.05] shadow-2xl skew-y-2 hover:skew-y-0 transition-transform duration-700 object-[50%_20%]"
+            />
+          </div>
         </motion.div>
+      </div>
 
-        {/* STATUS */}
-        <motion.p
-          variants={fadeUp}
-          className="mt-6 text-sm text-white/40"
-        >
-          Open to freelance & full-time opportunities
-        </motion.p>
-      </motion.div>
-
-      {/* RIGHT IMAGE */}
-      <motion.div
-        variants={imageReveal}
-        initial="hidden"
-        animate="show"
-        className="w-[35%] relative flex items-center justify-center overflow-hidden"
-      >
-        <img
-          src="/rohith.png"
-          alt="Rohith"
-          className="w-full h-full object-cover object-[70%_center] opacity-95 contrast-105 brightness-95"
-        />
-
-        {/* GRADIENT */}
-        <div className="absolute inset-0 bg-gradient-to-l from-black/60 via-transparent to-transparent"></div>
-
-        {/* SOFT LIGHT */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.06),transparent_60%)]"></div>
-      </motion.div>
-
-      {/* SCROLL INDICATOR */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/40"
-      >
-        <span className="text-xs tracking-widest">Scroll</span>
-
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-          className="mt-2"
-        >
-          ↓
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

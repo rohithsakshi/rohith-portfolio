@@ -13,7 +13,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="section py-20 px-6 text-white">
+    <section className="section py-20 px-6 text-slate-900">
       <div className="max-w-4xl mx-auto">
 
         <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">

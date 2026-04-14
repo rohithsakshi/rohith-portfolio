@@ -1,34 +1,8 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
-// ✅ GLOBAL EASING (CONSISTENT ACROSS APP)
-const easeOut = [0.22, 1, 0.36, 1] as const;
-
-// 🎬 VARIANTS
-const container: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: easeOut, // ✅ FIXED
-    },
-  },
-};
-
-// 📦 DATA
 const experiences = [
   {
     company: "YaaRCubes",
@@ -75,95 +49,84 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section className="py-24 md:py-32 bg-black text-white relative overflow-hidden">
-      
-      {/* 🌌 BACKGROUND GLOW */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.05),transparent_40%)] blur-3xl pointer-events-none"></div>
+    <section id="experience" className="relative py-24 md:py-32 bg-slate-50 overflow-hidden">
+      <div className="absolute bottom-0 right-[20%] w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10 lg:px-16">
-
-        {/* HEADER */}
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
         <div className="mb-16">
-          <p className="text-xs tracking-[0.2em] uppercase text-white/40 mb-4">
+          <p className="text-cyan-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 text-center sm:text-left">
             Experience
           </p>
-
-          <h2 className="text-4xl md:text-5xl font-semibold">
-            Career Journey
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center sm:text-left">
+            Career <span className="text-gradient">Journey.</span>
           </h2>
         </div>
 
-        {/* TIMELINE */}
         <motion.div
-          variants={container}
+          variants={containerVariants}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="relative pl-8"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="relative"
         >
-          {/* LINE */}
-          <div className="absolute left-0 top-0 h-full w-[1px] bg-white/10"></div>
+          {/* Vertical Line */}
+          <div className="absolute left-[11px] sm:left-[19px] top-4 bottom-4 w-px bg-gradient-to-b from-cyan-500/50 via-white/10 to-transparent" />
 
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              variants={item}
-              className="relative mb-16"
-            >
-              {/* DOT */}
-              <div className="absolute -left-[6px] top-2 h-3 w-3 rounded-full bg-white/40"></div>
-
-              {/* GLOW DOT */}
-              <div className="absolute -left-[10px] top-[6px] h-5 w-5 rounded-full bg-white/10 blur-md"></div>
-
-              {/* CARD */}
+          <div className="space-y-12">
+            {experiences.map((exp, i) => (
               <motion.div
-                whileHover={{ y: -6, scale: 1.01 }}
-                transition={{ ease: easeOut }} // ✅ consistency
-                className="relative p-6 md:p-7 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/30 transition group"
+                key={i}
+                variants={itemVariants}
+                className="relative flex gap-6 sm:gap-8 group"
               >
-                {/* HOVER GLOW */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none rounded-2xl bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_70%)]"></div>
-
-                {/* TOP */}
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-3">
-                  <h3 className="text-xl font-semibold">
-                    {exp.role} — {exp.company}
-                  </h3>
-
-                  <span className="text-sm text-white/40">
-                    {exp.duration}
-                  </span>
+                {/* Timeline Node */}
+                <div className="relative z-10 mt-1 shrink-0">
+                  <div className="relative flex h-6 w-6 sm:h-10 sm:w-10 items-center justify-center">
+                    {i === 0 && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-20" />}
+                    <div className={`relative w-6 h-6 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border ${i === 0 ? 'bg-cyan-500/20 border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.5)]' : 'bg-white/[0.03] border-black/10 gap-0'}`}>
+                      <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${i === 0 ? 'bg-cyan-400' : 'bg-black/30'}`} />
+                    </div>
+                  </div>
                 </div>
 
-                {/* DESCRIPTION */}
-                <p className="text-white/60 mb-4 leading-relaxed">
-                  {exp.description}
-                </p>
+                {/* Content Card */}
+                <div className="flex-1 glass p-6 sm:p-8 rounded-[2rem] border-black/[0.03] group-hover:bg-white/[0.04] transition-all duration-300">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 mb-1 tracking-tight">
+                        {exp.role} <span className="text-slate-500 font-normal">— {exp.company}</span>
+                      </h3>
+                      <p className="text-cyan-400/80 font-medium text-xs sm:text-sm">{exp.duration}</p>
+                    </div>
+                  </div>
 
-                {/* HIGHLIGHTS */}
-                <ul className="mb-4 space-y-2">
-                  {exp.highlights.map((h, idx) => (
-                    <li key={idx} className="text-sm text-white/70">
-                      • {h}
-                    </li>
-                  ))}
-                </ul>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                    {exp.description}
+                  </p>
 
-                {/* TECH */}
-                <div className="flex flex-wrap gap-2">
-                  {exp.tech.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xs px-3 py-1 rounded-full bg-white/10 text-white/70 border border-white/10 hover:bg-white/20 transition"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  <ul className="space-y-3 mb-6">
+                    {exp.highlights.map((h, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-sm text-slate-500 leading-relaxed">
+                        <span className="mt-2 w-1 h-1 rounded-full bg-cyan-500/50 shrink-0" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2 pt-4 border-t border-black/[0.05]">
+                    {exp.tech.map((t, idx) => (
+                      <span
+                        key={idx}
+                        className="text-[10px] px-3 py-1 uppercase tracking-wider font-semibold rounded-full bg-black/5 text-slate-600 border border-black/5"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

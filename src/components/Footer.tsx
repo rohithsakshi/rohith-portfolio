@@ -1,83 +1,38 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-
-// ✅ GLOBAL EASING (CONSISTENT)
-const easeOut = [0.22, 1, 0.36, 1] as const;
-
-// 🎬 VARIANTS
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: easeOut, // ✅ FIXED
-    },
-  },
-};
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black text-white py-12 overflow-hidden">
-      
-      {/* 🌌 SUBTLE GLOW */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.05),transparent_50%)] blur-2xl pointer-events-none"></div>
-
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="max-w-6xl mx-auto px-6 md:px-10 flex flex-col items-center text-center gap-6"
-      >
-        {/* NAME */}
-        <h3 className="text-lg font-semibold tracking-wide">
-          Rohith Ganesan
-        </h3>
-
-        {/* ROLE */}
-        <p className="text-white/50 text-sm max-w-md">
-          Full Stack Developer building scalable applications with .NET, React, and modern web technologies.
-        </p>
-
-        {/* LINKS */}
-        <div className="flex gap-6 text-sm text-white/60">
-          <a
-            href="https://github.com/rohithsakshi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white transition"
-          >
-            GitHub
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/rohith-ganesan-94a206200/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white transition"
-          >
-            LinkedIn
-          </a>
-
-          <a
-            href="mailto:rohithganesan2002@gmail.com"
-            className="hover:text-white transition"
-          >
-            Email
-          </a>
+    <footer className="relative bg-white text-slate-500 py-12 border-t border-black/[0.03] overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div className="flex flex-col md:flex-row items-center gap-2">
+          <div className="w-8 h-8 rounded-full overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.1)] border border-black/10 shrink-0 mr-2">
+            <img src="/rohith.png" alt="Rohith" className="w-full h-full object-cover scale-110 object-[50%_20%]" />
+          </div>
+          <span className="text-slate-900 font-bold tracking-widest text-lg">ROHITH</span>
+          <span className="hidden md:block w-px h-4 bg-black/10 mx-2" />
+          <span className="text-sm font-medium">Rohith Ganesan.</span>
         </div>
 
-        {/* DIVIDER */}
-        <div className="w-full h-[1px] bg-white/10 my-2"></div>
-
-        {/* COPYRIGHT */}
-        <p className="text-xs text-white/40">
-          © {new Date().getFullYear()} Rohith Ganesan. Built with precision.
+        <div className="flex items-center gap-6 text-sm font-medium">
+          <a href="#about" className="hover:text-slate-900 transition-colors">About</a>
+          <a href="#projects" className="hover:text-slate-900 transition-colors">Projects</a>
+          <a href="https://github.com/rohithsakshi" target="_blank" className="hover:text-slate-900 transition-colors">Github</a>
+          <a href="https://linkedin.com/in/rohith-ganesan-94a206200/" target="_blank" className="hover:text-slate-900 transition-colors">LinkedIn</a>
+        </div>
+      </div>
+      
+      <div className="max-w-6xl mx-auto px-6 mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+        <p className="text-slate-400">
+          © {new Date().getFullYear()} Rohith Ganesan. All rights reserved.
         </p>
-      </motion.div>
+        <p className="flex items-center gap-1.5 text-slate-400">
+          <span className="animate-pulse w-1.5 h-1.5 rounded-full bg-cyan-500" />
+          Operating at 99.9% Uptime.
+        </p>
+      </div>
     </footer>
   );
 }

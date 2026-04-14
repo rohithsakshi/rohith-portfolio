@@ -1,106 +1,63 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-
-// ✅ GLOBAL EASING
-const easeOut = [0.22, 1, 0.36, 1] as const;
-
-// 🎬 VARIANTS
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: easeOut, // ✅ FIXED
-    },
-  },
-};
+import { motion } from "framer-motion";
+import { fadeUpVariant } from "@/lib/animations";
 
 export default function Resume() {
   return (
-    <section className="py-24 md:py-32 px-6 bg-black text-white relative overflow-hidden">
-      
-      {/* 🌌 BACKGROUND GLOW */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.05),transparent_40%)] blur-3xl pointer-events-none"></div>
+    <section id="resume" className="relative py-24 md:py-32 px-6 bg-slate-50 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[300px] bg-indigo-600/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto text-center mb-12">
-        
-        {/* HEADER */}
+      <div className="max-w-6xl mx-auto text-center">
         <motion.p
-          variants={fadeUp}
+          variants={fadeUpVariant}
           initial="hidden"
-          whileInView="show"
+          whileInView="visible"
           viewport={{ once: true }}
-          className="text-xs tracking-[0.2em] uppercase text-white/40 mb-4"
+          className="text-cyan-400 text-xs font-bold tracking-[0.2em] uppercase mb-4"
         >
           Resume
         </motion.p>
 
         <motion.h2
-          variants={fadeUp}
+          variants={fadeUpVariant}
           initial="hidden"
-          whileInView="show"
+          whileInView="visible"
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-semibold mb-4"
+          className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6"
         >
-          Experience & Work Summary
+          Comprehensive <span className="text-gradient">Timeline.</span>
         </motion.h2>
 
         <motion.p
-          variants={fadeUp}
+          variants={fadeUpVariant}
           initial="hidden"
-          whileInView="show"
+          whileInView="visible"
           viewport={{ once: true }}
-          className="text-white/60 max-w-xl mx-auto"
+          className="text-slate-500 max-w-xl mx-auto mb-10"
         >
-          Explore my professional journey, technical experience, and project work in detail.
+          Dive deeply into my professional track record, technical foundations, and project history.
         </motion.p>
 
-        {/* 🔥 QUICK STATS */}
         <motion.div
-          variants={fadeUp}
+          variants={fadeUpVariant}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="mt-6 flex justify-center gap-6 flex-wrap text-sm text-white/50"
-        >
-          <span>1.5+ Years Experience</span>
-          <span>10+ Projects</span>
-          <span>Full Stack (.NET + React)</span>
-        </motion.div>
-
-        {/* DOWNLOAD BUTTON */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
+          whileInView="visible"
           viewport={{ once: true }}
         >
           <a
             href="/resume.pdf"
             download
-            className="inline-block mt-8 px-6 py-3 rounded-xl bg-white text-black font-medium hover:scale-105 transition"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-slate-900 text-white font-semibold text-sm hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
           >
-            Download Resume ↓
+            Download PDF
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
           </a>
         </motion.div>
       </div>
 
-      {/* RESUME VIEWER */}
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="max-w-6xl mx-auto rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur shadow-[0_0_40px_rgba(255,255,255,0.05)]"
-      >
-        <iframe
-          src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=1"
-          className="w-full h-[85vh]"
-        />
-      </motion.div>
+
     </section>
   );
 }
