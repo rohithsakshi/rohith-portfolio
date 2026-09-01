@@ -25,7 +25,7 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`transition-all duration-500 flex items-center justify-between relative ${
           scrolled 
-            ? "bg-[#050505]/70 backdrop-blur-lg border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] h-16 px-6 lg:px-8 gap-8 w-full max-w-[1400px]" 
+            ? "bg-[#050505]/70 backdrop-blur-lg border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] h-14 px-5 lg:px-6 gap-6 w-[95%] md:w-max max-w-5xl mx-auto" 
             : "w-full border-b border-transparent h-24 px-6 lg:px-12 max-w-[1400px]"
         }`}
       >
@@ -35,7 +35,7 @@ export default function Navbar() {
         </Link>
 
         {/* 🧭 DESKTOP NAV LINKS */}
-        <div className={`hidden md:flex items-center transition-all duration-300 ${scrolled ? "gap-6" : "gap-8"}`}>
+        <div className={`hidden md:flex items-center transition-all duration-300 ${scrolled ? "gap-5 mx-6" : "gap-8"}`}>
           {navItems.map((item) => (
             <Link 
               key={item} 
@@ -59,7 +59,7 @@ export default function Navbar() {
           <a
             href="#contact"
             className={`group flex items-center justify-center gap-2 rounded-full border border-purple-500/50 bg-transparent text-white uppercase tracking-[0.2em] font-bold hover:bg-purple-500/10 hover:border-purple-500 hover:shadow-[0_0_15px_rgba(155,60,255,0.4)] transition-all duration-300 ${
-              scrolled ? "px-5 py-2 text-[9px]" : "px-6 py-2.5 text-[10px]"
+              scrolled ? "px-4 py-1.5 text-[9px]" : "px-6 py-2.5 text-[10px]"
             }`}
           >
             Let's Talk
