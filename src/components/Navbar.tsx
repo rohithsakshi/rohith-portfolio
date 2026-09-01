@@ -76,39 +76,38 @@ export default function Navbar() {
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
-        {/* 📱 MOBILE DROPDOWN MENU */}
+        {/* 📱 FULLSCREEN MOBILE MENU */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="absolute top-full left-0 right-0 mt-4 mx-4 p-6 rounded-2xl bg-[#0A0A0D]/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] md:hidden flex flex-col gap-6"
+              initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+              animate={{ opacity: 1, backdropFilter: "blur(16px)" }}
+              exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+              transition={{ duration: 0.4 }}
+              className="fixed inset-0 z-[-1] bg-black/60 md:hidden flex flex-col items-center justify-center min-h-screen w-full"
             >
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col items-center gap-10">
                 {navItems.map((item) => (
                   <Link
                     key={item}
                     href={`#${item.toLowerCase()}`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300 hover:text-[#9B3CFF] transition-colors"
+                    className="text-2xl font-medium tracking-wide text-zinc-200 hover:text-white transition-colors"
                   >
                     {item}
                   </Link>
                 ))}
-                <div className="h-px w-full bg-white/10" />
                 <Link
                   href="#resume"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300 hover:text-[#9B3CFF] transition-colors"
+                  className="text-2xl font-medium tracking-wide text-zinc-200 hover:text-white transition-colors mt-2"
                 >
                   Resume
                 </Link>
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="mt-2 text-center rounded-xl bg-[#9B3CFF] py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:bg-[#B45CFF] transition-all"
+                  className="mt-6 rounded-full border border-purple-500/50 bg-purple-500/10 px-8 py-3 text-lg font-semibold tracking-widest text-white hover:bg-purple-500/20 transition-all"
                 >
                   Let's Talk
                 </a>
