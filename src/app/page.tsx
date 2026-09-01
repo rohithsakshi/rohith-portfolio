@@ -1,7 +1,6 @@
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Highlights from "@/components/Highlights";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Workflow from "@/components/Workflow";
@@ -18,14 +17,13 @@ import Background from "@/components/Background";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-slate-50 selection:bg-cyan-500/30 selection:text-cyan-200">
+    <main className="relative min-h-screen bg-slate-50 selection:bg-purple-500/40 selection:text-white">
       <Loader />
       <Background />
       <Navbar />
       
       <div className="relative z-10 flex flex-col">
         <Hero />
-        <Highlights />
         <About />
         <Skills />
         <Workflow />
@@ -35,7 +33,6 @@ export default function Home() {
         <Certifications />
         <Resume />
         <Services />
-        <CTA />
         <Contact />
       </div>
 

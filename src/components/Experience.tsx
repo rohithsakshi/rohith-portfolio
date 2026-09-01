@@ -49,16 +49,18 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-24 md:py-32 bg-slate-50 overflow-hidden">
-      <div className="absolute bottom-0 right-[20%] w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
-        <div className="mb-16">
-          <p className="text-cyan-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 text-center sm:text-left">
-            Experience
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-center sm:text-left">
-            Career <span className="text-gradient">Journey.</span>
+    <section id="experience" className="relative py-24 md:py-32 bg-[#050505] overflow-hidden selection:bg-[#9B3CFF]/30 selection:text-white">
+      
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="mb-20">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-[1px] w-8 bg-[#9B3CFF]" />
+            <p className="text-[#A1A1AA] text-[10px] font-semibold tracking-[0.3em] uppercase">
+              Experience
+            </p>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+            Career <span className="text-[#9B3CFF]">Journey.</span>
           </h2>
         </div>
 
@@ -67,59 +69,58 @@ export default function Experience() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative"
+          className="relative max-w-4xl"
         >
           {/* Vertical Line */}
-          <div className="absolute left-[11px] sm:left-[19px] top-4 bottom-4 w-px bg-gradient-to-b from-cyan-500/50 via-white/10 to-transparent" />
+          <div className="absolute left-[7px] md:left-[11px] top-2 bottom-0 w-[1px] bg-white/10" />
 
-          <div className="space-y-12">
+          <div className="space-y-16">
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="relative flex gap-6 sm:gap-8 group"
+                className="relative flex gap-8 md:gap-16 group"
               >
                 {/* Timeline Node */}
-                <div className="relative z-10 mt-1 shrink-0">
-                  <div className="relative flex h-6 w-6 sm:h-10 sm:w-10 items-center justify-center">
-                    {i === 0 && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-20" />}
-                    <div className={`relative w-6 h-6 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border ${i === 0 ? 'bg-cyan-500/20 border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.5)]' : 'bg-white/[0.03] border-black/10 gap-0'}`}>
-                      <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${i === 0 ? 'bg-cyan-400' : 'bg-black/30'}`} />
-                    </div>
+                <div className="relative z-10 mt-1.5 shrink-0">
+                  <div className={`w-4 h-4 md:w-6 md:h-6 rounded-full flex items-center justify-center bg-[#050505] border-2 ${i === 0 ? 'border-[#9B3CFF]' : 'border-white/30'}`}>
+                    <div className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${i === 0 ? 'bg-[#9B3CFF]' : 'bg-transparent'}`} />
                   </div>
                 </div>
 
-                {/* Content Card */}
-                <div className="flex-1 glass p-6 sm:p-8 rounded-[2rem] border-black/[0.03] group-hover:bg-white/[0.04] transition-all duration-300">
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-1 tracking-tight">
-                        {exp.role} <span className="text-slate-500 font-normal">— {exp.company}</span>
-                      </h3>
-                      <p className="text-cyan-400/80 font-medium text-xs sm:text-sm">{exp.duration}</p>
-                    </div>
+                {/* Content Block */}
+                <div className="flex-1 pb-8 px-6 md:px-8 py-6 rounded-2xl bg-[#101014]/50 border border-white/5 hover:border-[#9B3CFF]/30 transition-colors duration-500">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-4">
+                    <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                      {exp.role} <span className="text-zinc-600 font-light mx-2">/</span> <span className="text-[#9B3CFF]">{exp.company}</span>
+                    </h3>
+                    <p className="text-zinc-500 text-xs md:text-sm font-semibold tracking-wider uppercase">{exp.duration}</p>
                   </div>
 
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  <p className="text-[#A1A1AA] text-sm md:text-base leading-relaxed mb-6 font-light max-w-2xl">
                     {exp.description}
                   </p>
 
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-3 mb-8">
                     {exp.highlights.map((h, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-sm text-slate-500 leading-relaxed">
-                        <span className="mt-2 w-1 h-1 rounded-full bg-cyan-500/50 shrink-0" />
+                      <li key={idx} className="flex items-start gap-3 text-sm text-zinc-400">
+                        <span className="text-[#9B3CFF] mt-1 flex-shrink-0">
+                           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
                         {h}
                       </li>
                     ))}
                   </ul>
 
-                  <div className="flex flex-wrap gap-2 pt-4 border-t border-black/[0.05]">
+                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                    <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-[0.2em] flex items-center mr-2">Tech:</span>
                     {exp.tech.map((t, idx) => (
                       <span
                         key={idx}
-                        className="text-[10px] px-3 py-1 uppercase tracking-wider font-semibold rounded-full bg-black/5 text-slate-600 border border-black/5"
+                        className="text-[11px] font-bold tracking-wider uppercase text-zinc-300"
                       >
                         {t}
+                        {idx < exp.tech.length - 1 && <span className="text-[#9B3CFF]/30 ml-4 font-normal">/</span>}
                       </span>
                     ))}
                   </div>

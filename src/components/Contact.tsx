@@ -33,98 +33,106 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 md:py-32 px-6 bg-white overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.03),transparent_60%)] pointer-events-none" />
+    <section id="contact" className="relative pt-12 pb-8 px-6 bg-[#050505] overflow-hidden selection:bg-[#9B3CFF]/30 selection:text-white">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#9B3CFF]/5 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-[1400px] mx-auto relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-16 items-center"
         >
-          <motion.p variants={fadeUpVariant} className="text-indigo-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
-            Contact
-          </motion.p>
-          <motion.h2 variants={fadeUpVariant} className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
-            Let’s start a <span className="text-gradient">Conversation.</span>
-          </motion.h2>
-          <motion.p variants={fadeUpVariant} className="text-slate-600 max-w-xl mx-auto leading-relaxed">
-            Have a job opportunity, idea, or freelance project? Let’s build something impactful.
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-[1fr_1.5fr] gap-8 bg-slate-50 glass rounded-[2rem] border border-black/[0.03] p-6 text-left"
-        >
-          {/* Quick Info & Socials */}
-          <motion.div variants={itemVariants} className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-black/[0.02] flex flex-col justify-between overflow-hidden relative">
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-cyan-500/10 blur-[60px] pointer-events-none" />
+          <div className="flex flex-col">
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Connect</h3>
-              <div className="space-y-4">
-                <a href="mailto:rohithganesan2002@gmail.com" className="block text-slate-600 hover:text-slate-900 transition-colors group">
-                  <span className="block text-xs uppercase tracking-wider text-slate-400 font-bold mb-1 group-hover:text-cyan-400 transition-colors">Email</span>
-                  rohithganesan2002@gmail.com
-                </a>
-                <a href="https://linkedin.com/in/rohith-ganesan-94a206200/" target="_blank" rel="noopener noreferrer" className="block text-slate-600 hover:text-slate-900 transition-colors group">
-                  <span className="block text-xs uppercase tracking-wider text-slate-400 font-bold mb-1 group-hover:text-indigo-400 transition-colors">LinkedIn</span>
-                  linkedin.com/in/rohith
-                </a>
-                <a href="https://github.com/rohithsakshi" target="_blank" rel="noopener noreferrer" className="block text-slate-600 hover:text-slate-900 transition-colors group">
-                  <span className="block text-xs uppercase tracking-wider text-slate-400 font-bold mb-1 group-hover:text-zinc-200 transition-colors">GitHub</span>
-                  github.com/rohith
-                </a>
-              </div>
+              <motion.div variants={fadeUpVariant} className="flex items-center gap-4 mb-4">
+                <div className="h-[1px] w-8 bg-purple-500" />
+                <p className="text-zinc-400 text-[10px] sm:text-xs font-semibold tracking-[0.3em] uppercase">
+                  Contact
+                </p>
+              </motion.div>
+
+              <motion.h2 
+                variants={fadeUpVariant}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-white mb-6"
+              >
+                Let’s build something <br className="hidden lg:block" />
+                <span className="text-[#9B3CFF]">impactful together.</span>
+              </motion.h2>
+
+              <motion.p 
+                variants={fadeUpVariant}
+                className="text-[#A1A1AA] text-base sm:text-lg max-w-md leading-relaxed font-light mb-8"
+              >
+                Ready to scale your product or need help architecting your next big system? Let's turn complex problems into elegant solutions.
+              </motion.p>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: CONTACT FORM */}
+          <motion.div variants={itemVariants} className="relative w-full lg:max-w-xl ml-auto">
+            <div className="relative p-6 sm:p-8 bg-[#0A0A0D]/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+              {/* Subtle top glare */}
+              <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Send a Message</h3>
+              
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4 relative z-10">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase ml-1">Name</label>
+                    <input
+                      type="text"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className="w-full bg-[#101014] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#9B3CFF]/50 focus:bg-[#15151A] transition-all font-light"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase ml-1">Email</label>
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      className="w-full bg-[#101014] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#9B3CFF]/50 focus:bg-[#15151A] transition-all font-light"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex flex-col gap-1.5 mt-1">
+                  <label className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase ml-1">Message</label>
+                  <textarea
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    className="w-full h-28 bg-[#101014] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#9B3CFF]/50 focus:bg-[#15151A] transition-all resize-none font-light"
+                    required
+                  />
+                </div>
+
+                {status === "success" && (
+                  <p className="text-emerald-400 text-sm font-medium mt-1">Message sent successfully!</p>
+                )}
+                {status === "error" && (
+                  <p className="text-red-400 text-sm font-medium mt-1">Something went wrong. Please email directly.</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="group relative w-full bg-[#9B3CFF] text-white font-bold tracking-[0.2em] uppercase text-[10px] sm:text-xs rounded-xl py-4 hover:bg-[#B45CFF] hover:shadow-[0_0_20px_rgba(155,60,255,0.4)] transition-all duration-300 disabled:opacity-50 mt-2 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-3">
+                    {loading ? "Sending..." : "Submit Inquiry"}
+                    {!loading && <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>}
+                  </span>
+                </button>
+              </form>
             </div>
           </motion.div>
-
-          {/* Form */}
-          <motion.form variants={itemVariants} onSubmit={handleSubmit} className="p-4 md:p-8 flex flex-col gap-4">
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full bg-white/[0.03] border border-black/[0.05] rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.05] transition-all"
-                required
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full bg-white/[0.03] border border-black/[0.05] rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.05] transition-all"
-                required
-              />
-            </div>
-            <textarea
-              placeholder="Message"
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full h-32 md:h-40 bg-white/[0.03] border border-black/[0.05] rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.05] transition-all resize-none"
-              required
-            />
-            {status === "success" && (
-              <p className="text-emerald-400 text-sm font-medium">Message sent successfully!</p>
-            )}
-            {status === "error" && (
-              <p className="text-red-400 text-sm font-medium">Something went wrong. Please try emailing directly.</p>
-            )}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-slate-900 text-white font-semibold rounded-xl py-3.5 hover:bg-slate-700 transition-colors disabled:opacity-50"
-            >
-              {loading ? "Sending..." : "Send Message"}
-            </button>
-          </motion.form>
         </motion.div>
       </div>
     </section>
