@@ -5,9 +5,24 @@ import { containerVariants, itemVariants } from "@/lib/animations";
 
 const experiences = [
   {
+    company: "DAFT Labs",
+    role: "Full Stack Developer",
+    duration: "Nov 2025 – Present",
+    description:
+      "Building websites, web applications, and full-stack mobile applications with modern technologies, focusing on scalable architecture, performance, and polished user experiences.",
+    highlights: [
+      "Developing responsive websites and web applications using React.js and Next.js",
+      "Building full-stack mobile applications using React Native",
+      "Developing RESTful APIs and backend services using Node.js",
+      "Designing and managing MongoDB databases",
+      "Delivering complete end-to-end solutions from frontend to backend and deployment",
+    ],
+    tech: ["React.js", "Next.js", "Node.js", "MongoDB"],
+  },
+  {
     company: "YaaRCubes",
     role: "Full Stack Developer",
-    duration: "Aug 2024 – Present",
+    duration: "Aug 2024 – Oct 2025",
     description:
       "Building cross-platform and web applications with a focus on performance, scalability, and clean architecture.",
     highlights: [
