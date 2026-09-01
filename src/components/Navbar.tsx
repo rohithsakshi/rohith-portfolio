@@ -80,11 +80,11 @@ export default function Navbar() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-              animate={{ opacity: 1, backdropFilter: "blur(16px)" }}
-              exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-              transition={{ duration: 0.4 }}
-              className="fixed inset-0 z-[-1] bg-black/60 md:hidden flex flex-col items-center justify-center min-h-screen w-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-[-1] bg-[#050505]/95 backdrop-blur-2xl md:hidden flex flex-col items-center justify-center min-h-screen w-full"
             >
               <div className="flex flex-col items-center gap-10">
                 {navItems.map((item) => (
